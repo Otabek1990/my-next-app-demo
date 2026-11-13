@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Tiny5 } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
+const redaction=Tiny5({
+  weight:"400",
+  variable:"--font-tiny5"
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,9 +26,34 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${redaction.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <header className="flex items-center bg-blue-500 text-white px-16 py-3 justify-between">
+          <h2>Logo</h2>
+          <nav>
+            <ul className="flex items-center gap-5">
+              <li>
+                <Link href={"/"}>Home</Link>
+              </li>
+             
+              <li>
+                <Link href={"/login"}>Login</Link>
+              </li>
+              <li>
+                <Link href={"/demo"}>Demo</Link>
+              </li>
+              <li>
+                <Link href={"/forma1"}>Forma 1</Link>
+              </li>
+              <li>
+                <Link href={"/forma2"}>Forma 2</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
